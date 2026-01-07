@@ -1,24 +1,40 @@
 ---
 import Simple from '@layouts/Simple.astro'
-const [, year, semesterSlug, courseSlug] = Astro.url.pathname.split('/')
-const unslugify = (str: string) => str.split('-').map(x => x.charAt(0).toUpperCase() + x.slice(1)).join(' ')
-const semester = unslugify(semesterSlug)
-const course = unslugify(courseSlug)
+import { getCollection } from 'astro:content'
+
+interface InnerProps {
+  title?: string;
+  year?: string;
+  course?: string;
+}
+interface Props extends InnerProps {
+  frontmatter?: InnerProps;
+}
+
+const { title: _title, year, course: courseId, frontmatter } = Astro.props
+
+const _courseId = frontmatter?.course ?? courseId
+const _year = frontmatter?.year ?? year
+
+let courses = await getCollection('courses')
+const course = courses.find(course => course.id === _courseId)
+
+const title = _title ?? frontmatter?.title ?? `${course?.data.name} | ${_year}`
 ---
 
-<Simple title={`${semester} ${year} | ${course}`}>
+<Simple title={title}>
   <Fragment slot="header">
     <header>
-      <h1>{ course }</h1>
+      <h1>{ course?.data.name ?? 'Unknown Course' }</h1>
       <div>
-        { semester } { year }
+        { _year }
         |
         <a href="/">Instructor Page</a>
         |
         <a href="https://hillcreekchristian.org/" target="_blank">HCC</a>
       </div>
       <nav hidden>
-        <a href={`/${year}/${semesterSlug}/${courseSlug}`}>Home</a>
+        <a href={`/${_courseId}`}>Home</a>
       </nav>
     </header>
   </Fragment>

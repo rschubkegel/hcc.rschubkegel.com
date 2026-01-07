@@ -4,8 +4,8 @@ import { getCollection } from 'astro:content';
 import { assignedBeforeNow, capitalizeString, formatWeekString, isHrefExternal, SYMBOLS } from 'src/global';
 import { DateTime } from 'luxon';
 const weeklyResources = (await getCollection('weekly-resources', ({ id }) => /computer-science/.test(id)));
-const startDate = DateTime.fromISO('2024-09-04');
-const endDate = DateTime.fromISO('2025-01-31');
+const startDate = DateTime.fromISO('2026-09-04');
+const endDate = DateTime.fromISO('2027-01-31');
 const filteredWeeklyResources = weeklyResources.filter((resource) => {
   const date = DateTime.fromISO(resource.id.slice(-10));
   const afterStart = date.diff(startDate).milliseconds > 0;
@@ -51,7 +51,7 @@ const resourcesWithWeekNumber = filteredWeeklyResources.map((resource, i) => {
       </tr>
       <tr>
         <td>
-          <a href="/2024/fall/computer-science/syllabus">Course Syllabus</a>
+          <a href="/2026/fall/computer-science/syllabus">Course Syllabus</a>
         </td>
         <td>
           Includes an overview of the topics covered, grading criteria, and participation expectations.

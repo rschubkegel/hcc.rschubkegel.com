@@ -1,6 +1,7 @@
 ---
 name: Guess the Number - High Scores
 title: "Assignment: Guess the Number - High Scores"
+class: computer-science/2024
 date: 2024-11-07
 due: 2024-11-13
 time: 180

@@ -1,5 +1,6 @@
 ---
 title: 'Python - Pygame State Variables'
+class: computer-science/2024
 date: 2024-12-05
 time: 90
 ---

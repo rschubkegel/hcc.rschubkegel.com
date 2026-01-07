@@ -1,6 +1,7 @@
 ---
 name: Dice Rolling Simulator
 title: "Assignment: Dice Rolling Simulator"
+class: computer-science/2024
 date: 2024-10-31
 due: 2024-11-06
 time: 120

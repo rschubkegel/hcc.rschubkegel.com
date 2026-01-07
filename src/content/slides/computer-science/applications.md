@@ -1,5 +1,6 @@
 ---
 title: 'CS - Applications'
+class: computer-science/2024
 date: 2024-11-07
 time: 90
 ---

@@ -1,6 +1,7 @@
 ---
 name: Intro Survey
 title: "Assignment: Intro Survey"
+class: computer-science/2024
 date: 2024-09-04
 due: 2024-09-04
 time: 15

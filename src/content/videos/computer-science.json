@@ -1,0 +1,522 @@
+[
+  {
+    "title": "What Makes a Computer...",
+    "href": "https://youtu.be/mCq8-xTH7jA?si=Xd8vFaW51kNiU0af",
+    "class": "computer-science/2024",
+    "date": "2024-09-12",
+    "time": 5,
+    "topics": [
+      "Course Introduction",
+      "CS: What is a Computer",
+      "CS: Computer Languages",
+      "Python: Variables",
+      "Python: Conditions"
+    ]
+  },
+  {
+    "title": "Electronic Computing",
+    "href": "https://youtu.be/LN0ucKNX0hc?si=NYF-7p3uJ74_VSrL",
+    "class": "computer-science/2024",
+    "date": "2024-09-12",
+    "time": 10,
+    "topics": [
+      "Course Introduction",
+      "CS: What is a Computer",
+      "CS: Computer Languages",
+      "Python: Variables",
+      "Python: Conditions"
+    ]
+  },
+  {
+    "title": "Circuits & Logic",
+    "href": "https://youtu.be/ZoqMiFKspAA?si=daBAe7nFXQRLSQmT",
+    "class": "computer-science/2024",
+    "date": "2024-09-12",
+    "time": 5,
+    "topics": [
+      "Course Introduction",
+      "CS: What is a Computer",
+      "CS: Computer Languages",
+      "Python: Variables",
+      "Python: Conditions"
+    ]
+  },
+  {
+    "title": "Binary & Data",
+    "href": "https://youtu.be/USCBCmwMCDA?si=nCEga3cOwmyZgZLd",
+    "class": "computer-science/2024",
+    "date": "2024-09-12",
+    "time": 6,
+    "topics": [
+      "Course Introduction",
+      "CS: What is a Computer",
+      "CS: Computer Languages",
+      "Python: Variables",
+      "Python: Conditions"
+    ]
+  },
+  {
+    "title": "Representing Numbers & Letters...",
+    "href": "https://youtu.be/1GSjbWt0c9M?si=OOVkI2WyUrwI1m0W",
+    "class": "computer-science/2024",
+    "date": "2024-09-12",
+    "time": 11,
+    "topics": [
+      "Course Introduction",
+      "CS: What is a Computer",
+      "CS: Computer Languages",
+      "Python: Variables",
+      "Python: Conditions"
+    ]
+  },
+  {
+    "title": "Python Variables",
+    "href": "https://www.youtube.com/watch?v=Gf9wLsCJDqc",
+    "class": "computer-science/2024",
+    "date": "2024-09-12",
+    "time": 2,
+    "topics": [
+      "Course Introduction",
+      "CS: What is a Computer",
+      "CS: Computer Languages",
+      "Python: Variables",
+      "Python: Conditions"
+    ]
+  },
+  {
+    "title": "Control Flow in Python",
+    "href": "https://youtu.be/Zp5MuPOtsSY?si=aan38X8g9lOzrFFl",
+    "class": "computer-science/2024",
+    "date": "2024-09-12",
+    "time": 16,
+    "topics": [
+      "Course Introduction",
+      "CS: What is a Computer",
+      "CS: Computer Languages",
+      "Python: Variables",
+      "Python: Conditions"
+    ]
+  },
+  {
+    "title": "Week 3 Lecture",
+    "href": "https://drive.google.com/file/d/1NcUfNz3hEUv1kkn9AzB3d3T2hQi0kOsy/view?usp=drive_link",
+    "class": "computer-science/2024",
+    "date": "2024-09-19",
+    "time": 80,
+    "topics": [
+      "CS: Operating Systems",
+      "Python: Data Types",
+      "Python: Operators",
+      "Python: Loops"
+    ]
+  },
+  {
+    "title": "Operating Systems",
+    "href": "https://youtu.be/26QPDBe-NB8?si=p6KmuaqJM5xXJCRm",
+    "class": "computer-science/2024",
+    "date": "2024-09-19",
+    "time": 14,
+    "topics": [
+      "CS: Operating Systems",
+      "Python: Data Types",
+      "Python: Operators",
+      "Python: Loops"
+    ]
+  },
+  {
+    "title": "Python Variables",
+    "href": "https://www.youtube.com/watch?v=cQT33yu9pY8",
+    "class": "computer-science/2024",
+    "date": "2024-09-19",
+    "time": 7,
+    "topics": [
+      "CS: Operating Systems",
+      "Python: Data Types",
+      "Python: Operators",
+      "Python: Loops"
+    ]
+  },
+  {
+    "title": "If statements in Python",
+    "href": "https://youtu.be/FvMPfrgGeKs?si=QInNrEVwx1MmN4Dt",
+    "class": "computer-science/2024",
+    "date": "2024-09-19",
+    "time": 9,
+    "topics": [
+      "CS: Operating Systems",
+      "Python: Data Types",
+      "Python: Operators",
+      "Python: Loops"
+    ]
+  },
+  {
+    "title": "Looping Over Lists in Python",
+    "href": "https://youtu.be/9ueMumuFv6g?si=VZnqla_X8UeFRtM-",
+    "class": "computer-science/2024",
+    "date": "2024-09-19",
+    "time": 3,
+    "topics": [
+      "CS: Operating Systems",
+      "Python: Data Types",
+      "Python: Operators",
+      "Python: Loops"
+    ]
+  },
+  {
+    "title": "For Loops in Python",
+    "href": "https://youtu.be/94UHCEmprCY?si=Rf4FVzOQa8q1v3IC",
+    "class": "computer-science/2024",
+    "date": "2024-09-19",
+    "time": 15,
+    "topics": [
+      "CS: Operating Systems",
+      "Python: Data Types",
+      "Python: Operators",
+      "Python: Loops"
+    ]
+  },
+  {
+    "title": "What is the Internet?",
+    "href": "https://youtu.be/Dxcc6ycZ73M?si=xAxFcJWZr-kCH13Y",
+    "class": "computer-science/2024",
+    "date": "2024-09-26",
+    "time": 4,
+    "topics": [
+      "CS: The Internet",
+      "Python: Lists"
+    ]
+  },
+  {
+    "title": "Wires, Cables & Wifi",
+    "href": "https://youtu.be/ZhEf7e4kopM?si=cSM97bwhZdxZswK_",
+    "class": "computer-science/2024",
+    "date": "2024-09-26",
+    "time": 7,
+    "topics": [
+      "CS: The Internet",
+      "Python: Lists"
+    ]
+  },
+  {
+    "title": "Cybersecurity & Crime",
+    "href": "https://youtu.be/AuYNXgO_f3Y?si=ZHW4Fzvwf9rJKo0p",
+    "class": "computer-science/2024",
+    "date": "2024-09-26",
+    "time": 5,
+    "topics": [
+      "CS: The Internet",
+      "Python: Lists"
+    ]
+  },
+  {
+    "title": "How Search Works",
+    "href": "https://youtu.be/LVV_93mBfSU?si=tz6NMFcOnhQlUovi",
+    "class": "computer-science/2024",
+    "date": "2024-09-26",
+    "time": 5,
+    "topics": [
+      "CS: The Internet",
+      "Python: Lists"
+    ]
+  },
+  {
+    "title": "Week 5 Lecture",
+    "href": "https://drive.google.com/file/d/1lsDU6vmiMsGKNNElyquhmNViTgL8VFcM/view?usp=drive_link",
+    "class": "computer-science/2024",
+    "date": "2024-10-03",
+    "time": 0,
+    "topics": [
+      "CS: Servers",
+      "CS: The Cloud",
+      "Python: Functions"
+    ]
+  },
+  {
+    "title": "Servers vs Desktops Explained",
+    "href": "https://youtu.be/UjCDWCeHCzY?si=w_1CSpwvRPH1URZv",
+    "class": "computer-science/2024",
+    "date": "2024-10-03",
+    "time": 7,
+    "topics": [
+      "CS: Servers",
+      "CS: The Cloud",
+      "Python: Functions"
+    ]
+  },
+  {
+    "title": "What is the Cloud?",
+    "href": "https://youtu.be/i9x0UO8MY0g?si=uEUOJALFU22_97Aw",
+    "class": "computer-science/2024",
+    "date": "2024-10-03",
+    "time": 3,
+    "topics": [
+      "CS: Servers",
+      "CS: The Cloud",
+      "Python: Functions"
+    ]
+  },
+  {
+    "title": "Functions in Python",
+    "href": "https://youtu.be/89cGQjB5R4M?si=Z3j7xKmYxAN0mRUF",
+    "class": "computer-science/2024",
+    "date": "2024-10-03",
+    "time": 10,
+    "topics": [
+      "CS: Servers",
+      "CS: The Cloud",
+      "Python: Functions"
+    ]
+  },
+  {
+    "title": "Machine Learning & Artificial Intelligence",
+    "href": "https://youtu.be/z-EtmaFJieY?si=iFDu4OezTca8pGK8",
+    "class": "computer-science/2024",
+    "date": "2024-10-10",
+    "time": 12,
+    "topics": [
+      "CS: Artificial Intelligence",
+      "Python: Modules"
+    ]
+  },
+  {
+    "title": "What are Python Modules",
+    "href": "https://youtu.be/XcfxkHrHTVE?si=qtq-tcs-V4RhTORg",
+    "class": "computer-science/2024",
+    "date": "2024-10-10",
+    "time": 7,
+    "topics": [
+      "CS: Artificial Intelligence",
+      "Python: Modules"
+    ]
+  },
+  {
+    "title": "Week 9 Lecture",
+    "href": "https://drive.google.com/file/d/1jYroV4IQ_EigtMxXKDfJsJPR35sVDZys/view?usp=drive_link",
+    "class": "computer-science/2024",
+    "date": "2024-10-31",
+    "time": 5,
+    "topics": [
+      "CS: File Systems",
+      "Python: Reading/Writing Files"
+    ]
+  },
+  {
+    "title": "Files & File Systems",
+    "href": "https://www.youtube.com/watch?v=KN8YgJnShPM",
+    "class": "computer-science/2024",
+    "date": "2024-10-31",
+    "time": 12,
+    "topics": [
+      "CS: File Systems",
+      "Python: Reading/Writing Files"
+    ]
+  },
+  {
+    "title": "Python read a file",
+    "href": "https://youtu.be/LpZmZs2_BC4?si=BzXTVTT16_y6klK1",
+    "class": "computer-science/2024",
+    "date": "2024-10-31",
+    "time": 4,
+    "topics": [
+      "CS: File Systems",
+      "Python: Reading/Writing Files"
+    ]
+  },
+  {
+    "title": "Python write a file",
+    "href": "https://www.youtube.com/watch?v=GJ5LJnIEEYo",
+    "class": "computer-science/2024",
+    "date": "2024-10-31",
+    "time": 3,
+    "topics": [
+      "CS: File Systems",
+      "Python: Reading/Writing Files"
+    ]
+  },
+  {
+    "title": "Understanding folders and files",
+    "href": "https://youtu.be/JlwobCSFRBU?si=rdUa3Eg7I9roQEnk",
+    "class": "computer-science/2024",
+    "date": "2024-11-07",
+    "time": 5,
+    "topics": [
+      "CS: Special Files",
+      "Python - More Files"
+    ]
+  },
+  {
+    "title": "Absolute vs Relative Paths",
+    "href": "https://youtu.be/YammX3US7u4?si=fb7vsGI1HA8eMbcV",
+    "class": "computer-science/2024",
+    "date": "2024-11-07",
+    "time": 5,
+    "topics": [
+      "CS: Special Files",
+      "Python - More Files"
+    ]
+  },
+  {
+    "title": "What Are .sys Files",
+    "href": "https://youtu.be/v7odrCEKeQM?si=RVchut8rRdb26Nhk",
+    "class": "computer-science/2024",
+    "date": "2024-11-07",
+    "time": 10,
+    "topics": [
+      "CS: Special Files",
+      "Python - More Files"
+    ]
+  },
+  {
+    "title": "Week 11 Lecture",
+    "href": "https://drive.google.com/file/d/1gsfGvEO8qBw2nBsRtPEwZxAEhVspAUwn/view?usp=sharing",
+    "class": "computer-science/2024",
+    "date": "2024-11-14",
+    "time": 0,
+    "topics": [
+      "CS: Databases",
+      "Python - Dictionaries"
+    ]
+  },
+  {
+    "title": "Intro to Databases",
+    "href": "https://youtu.be/Zc14ZkWVhhs?si=Yf-pZ7l9hpJIAHw2",
+    "class": "computer-science/2024",
+    "date": "2024-11-14",
+    "time": 6,
+    "topics": [
+      "CS: Databases",
+      "Python - Dictionaries"
+    ]
+  },
+  {
+    "title": "Python Dictionaries",
+    "href": "https://youtu.be/daefaLgNkw0?si=7tsxlDXL7kpCnk8T",
+    "class": "computer-science/2024",
+    "date": "2024-11-14",
+    "time": 10,
+    "topics": [
+      "CS: Databases",
+      "Python - Dictionaries"
+    ]
+  },
+  {
+    "title": "The horrors of software bugs",
+    "href": "https://youtu.be/Iq_r7IcNmUk?si=erfwjCBf2iZAiiiq",
+    "class": "computer-science/2024",
+    "date": "2024-11-21",
+    "time": 17,
+    "topics": [
+      "CS: Error Handling",
+      "Python - try/except"
+    ]
+  },
+  {
+    "title": " Using Try/Except Blocks",
+    "href": "https://youtu.be/NIWwJbo-9_8?si=jHP4sqgodAqladwt",
+    "class": "computer-science/2024",
+    "date": "2024-11-21",
+    "time": 11,
+    "topics": [
+      "CS: Error Handling",
+      "Python - try/except"
+    ]
+  },
+  {
+    "title": "Screens & 2D Graphics",
+    "href": "https://youtu.be/7Jr0SFMQ4Rs?si=UHu0ZeLMEhHUUfue",
+    "class": "computer-science/2024",
+    "date": "2024-12-05",
+    "time": 12,
+    "topics": [
+      "CS: Intro to Graphics",
+      "Python: Intro to Pygame"
+    ]
+  },
+  {
+    "title": "Python Constants",
+    "href": "https://youtu.be/NunPMnbszGE?si=_3uVlWNbui5fOiDD",
+    "class": "computer-science/2024",
+    "date": "2024-12-05",
+    "time": 9,
+    "topics": [
+      "CS: Intro to Graphics",
+      "Python: Intro to Pygame"
+    ]
+  },
+  {
+    "title": "Using Functions in Python",
+    "href": "https://youtu.be/WRI4fXDIXWM?si=rGOgX4jvQzVodK5s",
+    "class": "computer-science/2024",
+    "date": "2024-12-05",
+    "time": 13,
+    "topics": [
+      "CS: Intro to Graphics",
+      "Python: Intro to Pygame"
+    ]
+  },
+  {
+    "title": "Week 14 Lecture",
+    "href": "https://drive.google.com/file/d/1P6doC7s8q-qdhAeAu9f96Izy1q-WafqN/view?usp=drive_link",
+    "class": "computer-science/2024",
+    "date": "2024-12-12",
+    "time": 0,
+    "topics": [
+      "CS: User Interfaces",
+      "Python - State"
+    ]
+  },
+  {
+    "title": "The Windows GUI",
+    "href": "https://youtu.be/XpX2WuqzI0Y?si=VDerYW6ChRu9WBG6",
+    "class": "computer-science/2024",
+    "date": "2024-12-12",
+    "time": 7,
+    "topics": [
+      "CS: User Interfaces",
+      "Python - State"
+    ]
+  },
+  {
+    "title": "Graphical User Interfaces",
+    "href": "https://youtu.be/XIGSJshYb90?si=Z8oJPIEsSZUCytKG",
+    "class": "computer-science/2024",
+    "date": "2024-12-12",
+    "time": 13,
+    "topics": [
+      "CS: User Interfaces",
+      "Python - State"
+    ]
+  },
+  {
+    "title": "What is User Interface",
+    "href": "https://youtu.be/Z-BO6IYTgJg?si=Rdc047D2lfSJoHYh",
+    "class": "computer-science/2024",
+    "date": "2024-12-12",
+    "time": 3,
+    "topics": [
+      "CS: User Interfaces",
+      "Python - State"
+    ]
+  },
+  {
+    "title": "UX Design vs UI Design",
+    "href": "https://youtu.be/5CxXhyhT6Fc?si=ryUIsS-pLjRGYsXg",
+    "class": "computer-science/2024",
+    "date": "2024-12-12",
+    "time": 10,
+    "topics": [
+      "CS: User Interfaces",
+      "Python - State"
+    ]
+  },
+  {
+    "title": "Week 16 Lecture",
+    "href": "https://drive.google.com/file/d/1AJZ8MDGyTs63oR7iXcCQK4gIwBSx6TeM/view?usp=drive_link",
+    "class": "computer-science/2025",
+    "date": "2025-01-09",
+    "time": 0,
+    "topics": [
+      "Flappy Bird pt 4"
+    ]
+  }
+]

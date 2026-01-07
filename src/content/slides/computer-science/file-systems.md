@@ -1,5 +1,6 @@
 ---
 title: 'CS - File Systems'
+class: computer-science/2024
 date: 2024-10-31
 time: 90
 ---

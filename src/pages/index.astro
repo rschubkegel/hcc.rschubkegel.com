@@ -2,34 +2,11 @@
 import Simple from '@layouts/Simple.astro'
 import { getCollection } from 'astro:content'
 
-// Get all courses from src/content/courses/
-const courses = await getCollection('courses')
+// Get all classes from src/content/classes/
+const classes = await getCollection('classes')
 
-// Get all articles, assignments, slides, videos, and games from src/content/
-let articles = await getCollection('articles')
-let assignments = await getCollection('assignments')
-let slides = await getCollection('slides')
-let videos = await getCollection('videos')
-let games = await getCollection('games')
-
-// Combine all resources into a single array
-const articleResources = articles.flatMap(({ id, collection, data }) => data.map(resource => ({ id, collection, data: resource })))
-const assignmentResources = assignments.flat()
-const slideResources = slides.flat()
-const videoResources = videos.flatMap(({ id, collection, data }) => data.map(resource => ({ id, collection, data: resource })))
-const gameResources = games.flatMap(({ id, collection, data }) => data.map(resource => ({ id, collection, data: resource })))
-const resources = [...articleResources, ...assignmentResources, ...slideResources, ...videoResources, ...gameResources]
-
-// Create a list of course/year pairs based on the resources
-let coursesAndYears = resources.reduce((acc, resource) => {
-  const course = resource.id.split('/')[0]
-  const year = resource.data.date.getFullYear()
-  if (!acc[course]) {
-    acc[course] = new Set()
-  }
-  acc[course].add(year)
-  return acc
-}, {} as Record<string, Set<number>>)
+// Sort by start date
+const sortedClasses = classes.toSorted((a, b) => b.data.startDate.getTime() - a.data.startDate.getTime())
 ---
 
 <Simple title="Rylan Schubkegel | HCC">
@@ -47,15 +24,13 @@ let coursesAndYears = resources.reduce((acc, resource) => {
     </thead>
     <tbody>
       {
-        Object.entries(coursesAndYears).map(([course, years]) => (
-          Array.from(years).toSorted((a, b) => b - a).map(year => (
-            <tr>
-              <td>{year}</td>
-              <td>
-                <a href={`/${course}/${year}`}>{courses.find(_course => _course.id === course)?.data.name}</a>
-              </td>
-            </tr>
-          ))
+        sortedClasses.map(_class => (
+          <tr>
+            <td>{_class.data.startDate.getFullYear()}</td>
+            <td>
+              <a href={`/${_class.id}`}>{_class.data.name}</a>
+            </td>
+          </tr>
         ))
       }
     </tbody>

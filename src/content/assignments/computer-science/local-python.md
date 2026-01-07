@@ -1,6 +1,7 @@
 ---
 name: Running Python Locally
 title: "Assignment: Running Python Locally"
+class: computer-science/2024
 date: 2024-10-24
 due: 2024-10-24
 time: 60

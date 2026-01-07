@@ -1,6 +1,7 @@
 ---
 name: ThinkWave Check-in
 title: "Assignment: ThinkWave Check-in"
+class: computer-science/2024
 date: 2024-09-04
 due: 2024-09-11
 time: 10

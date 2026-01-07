@@ -1,6 +1,7 @@
 ---
 name: Choose Your Own Adventure
 title: "Assignment: CYOA Story Game"
+class: computer-science/2024
 date: 2024-11-14
 due: 2024-11-27
 time: 120

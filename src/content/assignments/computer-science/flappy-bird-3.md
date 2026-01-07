@@ -1,6 +1,7 @@
 ---
 name: "Flappy Bird 3"
 title: "Flappy Bird: Part 3"
+class: computer-science/2024
 date: 2024-12-19
 due: 2025-01-08
 time: 120

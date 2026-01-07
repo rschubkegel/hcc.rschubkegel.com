@@ -1,0 +1,47 @@
+---
+import Simple from '@layouts/Simple.astro';
+import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
+import { DateTime } from 'luxon';
+
+export const getStaticPaths = (async () => {
+  // Get all assignments from src/content/assignments/
+  let assignments = await getCollection('assignments');
+  
+  // Get all classes from src/content/classes/
+  let classes = await getCollection('classes');
+
+  return assignments.map(assignment => {
+    const _class = classes.find(_class => _class.id === assignment.data.class);
+    const year = _class?.data.startDate.getFullYear();
+    const slug = assignment.slug.split('/').at(1);
+    return {
+      params: {
+        class: _class?.id?.split('/').at(0),
+        year,
+        slug,
+      },
+      props: {
+        class: _class,
+        assignment,
+      },
+    };
+  })
+}) satisfies GetStaticPaths;
+const { props: { class: _class, assignment } } = Astro;
+const { Content } = await assignment.render();
+const dueDate = assignment.data.due ? DateTime.fromJSDate(assignment.data.due, { zone: 'America/Los_Angeles' }) : undefined;
+---
+
+<Simple title={ assignment.data.title || `Assignment: ${ assignment.data.name }` }>
+  <p>
+    ← <a href={`/${_class?.id}`}>Class Homepage</a>
+  </p>
+  <h1>{ assignment.data.name }</h1>
+  {dueDate && (
+    <p>
+      <mark>Due { dueDate.month }/{ dueDate.day } at 11:59</mark>
+    </p>
+  )}
+  <Content />
+</Simple>

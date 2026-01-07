@@ -1,6 +1,7 @@
 ---
 name: Guess the Number
 title: "Assignment: Guess the Number"
+class: computer-science/2024
 date: 2024-09-19
 due: 2024-09-25
 time: 120

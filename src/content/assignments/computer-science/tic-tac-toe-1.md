@@ -1,6 +1,7 @@
 ---
 name: Tic Tac Toe (part 1)
 title: "Assignment: TTT 1"
+class: computer-science/2024
 date: 2024-10-03
 due: 2024-10-09
 time: 120

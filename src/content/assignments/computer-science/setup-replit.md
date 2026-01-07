@@ -1,6 +1,7 @@
 ---
 name: Setup Replit
 title: "Assignment: Setup Replit"
+class: computer-science/2024
 date: 2024-09-19
 due: 2024-09-19
 time: 30

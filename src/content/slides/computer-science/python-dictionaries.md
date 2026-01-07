@@ -1,5 +1,6 @@
 ---
 title: 'Python - Dictionaries'
+class: computer-science/2024
 date: 2024-11-14
 time: 90
 ---

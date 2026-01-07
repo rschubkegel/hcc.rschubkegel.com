@@ -13,11 +13,16 @@ const dateSchema = z.union([z.string(), z.date()]).transform(date => {
   return _date.toJSDate();
 });
 
-const courseSchema = z.object({
-  /** Name of the course. */
+/** Slug is the unique identifier for the class. */
+const classSchema = z.object({
+  /** Name of the class. */
   name: z.string(),
-  /** Description of the course. */
+  /** Description of the class. */
   description: z.string(),
+  /** First day of the first semester of the class. */
+  startDate: dateSchema,
+  /** Last day of the last semester of the class. */
+  endDate: dateSchema,
 });
 
 const baseResourceSchema = z.object({
@@ -25,6 +30,8 @@ const baseResourceSchema = z.object({
   title: z.string(),
   /** Description of the resource */
   description: z.string().optional(),
+  /** Class that the resource is associated with (this must match the class slug) */
+  class: z.string(),
   /** URL of the resource */
   href: z.string().optional(),
   /** Date that the resource should be available to students. */
@@ -70,9 +77,9 @@ export const collections = {
     type: 'content',
     schema: assignmentSchema,
   }),
-  'courses': defineCollection({
+  'classes': defineCollection({
     type: 'data',
-    schema: courseSchema,
+    schema: classSchema,
   }),
   'games': defineCollection({
     type: 'data',

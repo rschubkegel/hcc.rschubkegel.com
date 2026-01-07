@@ -4,28 +4,27 @@ import { getCollection } from 'astro:content'
 
 interface InnerProps {
   title?: string;
-  year?: string;
-  course?: string;
+  class?: string;
 }
 interface Props extends InnerProps {
   frontmatter?: InnerProps;
 }
 
-const { title: _title, year, course: courseId, frontmatter } = Astro.props
+const { title: _title, class: classId, frontmatter } = Astro.props
 
-const _courseId = frontmatter?.course ?? courseId
-const _year = frontmatter?.year ?? year
+const _classId = frontmatter?.class ?? classId
 
-let courses = await getCollection('courses')
-const course = courses.find(course => course.id === _courseId)
+let classes = await getCollection('classes')
+const _class = classes.find(_class => _class.id === _classId)
+const _year = _class?.data.startDate.getFullYear()
 
-const title = _title ?? frontmatter?.title ?? `${course?.data.name} | ${_year}`
+const title = _title ?? frontmatter?.title ?? `${_class?.data.name} | ${_year}`
 ---
 
 <Simple title={title}>
   <Fragment slot="header">
     <header>
-      <h1>{ course?.data.name ?? 'Unknown Course' }</h1>
+      <h1>{ _class?.data.name ?? 'Unknown Class' }</h1>
       <div>
         { _year }
         |
@@ -34,7 +33,7 @@ const title = _title ?? frontmatter?.title ?? `${course?.data.name} | ${_year}`
         <a href="https://hillcreekchristian.org/" target="_blank">HCC</a>
       </div>
       <nav hidden>
-        <a href={`/${_courseId}`}>Home</a>
+        <a href={`/${_classId}`}>Home</a>
       </nav>
     </header>
   </Fragment>

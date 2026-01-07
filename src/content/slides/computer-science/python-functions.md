@@ -1,5 +1,6 @@
 ---
 title: 'Python - Functions'
+class: computer-science/2024
 date: 2024-10-03
 time: 90
 ---

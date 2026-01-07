@@ -1,5 +1,6 @@
 ---
 title: 'Python - Lists'
+class: computer-science/2024
 date: 2024-09-26
 time: 90
 ---

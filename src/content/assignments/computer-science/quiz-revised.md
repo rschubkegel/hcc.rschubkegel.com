@@ -1,6 +1,7 @@
 ---
 name: "Make a Quiz: Revised"
 title: "Assignment: Revised Quiz"
+class: computer-science/2024
 date: 2024-09-26
 due: 2024-10-02
 time: 120

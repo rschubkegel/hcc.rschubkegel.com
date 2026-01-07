@@ -6,6 +6,9 @@ import { assignedBeforeNow, capitalizeString, isHrefExternal, SYMBOLS } from 'sr
 import { DateTime } from 'luxon'
 
 export const getStaticPaths = (async () => {
+  // Get all classes from src/content/classes/
+  const classes = await getCollection('classes')
+  
   // Get all articles, assignments, slides, videos, and games from src/content/
   let articles = await getCollection('articles')
   let assignments = await getCollection('assignments')
@@ -20,30 +23,28 @@ export const getStaticPaths = (async () => {
   const computerScienceSlides = slides.filter(slide => slide.id.startsWith(computerScienceId)).flat()
   const computerScienceVideos = videos.filter(video => video.id.startsWith(computerScienceId)).flatMap(({ id, collection, data }) => data.map(resource => ({ id, collection, data: resource })))
   const computerScienceGames = games.filter(game => game.id.startsWith(computerScienceId)).flatMap(({ id, collection, data }) => data.map(resource => ({ id, collection, data: resource })))
-  const resources = [...computerScienceArticles, ...computerScienceAssignments, ...computerScienceSlides, ...computerScienceVideos, ...computerScienceGames]
+  const allResources = [...computerScienceArticles, ...computerScienceAssignments, ...computerScienceSlides, ...computerScienceVideos, ...computerScienceGames]
 
-  // Group resources by year
-  let resourcesByYear = resources.reduce(
-    (acc, resource) => {
-      const year = resource.data.date.getFullYear()
-      if (!acc[year]) {
-        acc[year] = []
-      }
-      acc[year].push(resource)
-      return acc
-    },
-    {} as Record<number, (typeof resources)[number][]>,
-  )
+  // Filter classes to only computer-science classes
+  const computerScienceClasses = classes.filter(_class => _class.id.startsWith(computerScienceId))
 
-  // Convert resources object to static path data
-  return Object.keys(resourcesByYear).map(year => ({
-    params: {
-      year,
-    },
-    props: {
-      resources: resourcesByYear[parseInt(year)].toSorted((a, b) => a.data.date.getTime() - b.data.date.getTime()),
-    },
-  }))
+  // Group resources by class slug
+  return computerScienceClasses.map(_class => {
+    // Filter resources that match this class's slug
+    const classResources = allResources.filter(resource => resource.data.class === _class.id)
+    
+    // Extract year from class ID (e.g., "computer-science/2024" -> "2024")
+    const year = _class.id.split('/').at(-1) || _class.data.startDate.getFullYear().toString()
+    
+    return {
+      params: {
+        year,
+      },
+      props: {
+        resources: classResources.toSorted((a, b) => a.data.date.getTime() - b.data.date.getTime()),
+      },
+    }
+  })
 }) satisfies GetStaticPaths
 
 const {
@@ -67,7 +68,7 @@ let resourcesByDate = resources.reduce(
 
 const getResourceHref = (resource: (typeof resources)[number]) => {
   if (!resource.data.href) {
-    const slug = resource.id.split('/').at(-1)?.split('.').at(0)
+    const slug = resource.id.split('/').at(1)?.split('.').at(0)
     if (slug) {
       return `${pathname}/${resource.collection}/${slug}`
     }
@@ -81,7 +82,7 @@ const getAnchorTarget = (href: string | undefined) => {
 }
 ---
 
-<Course course="computer-science" year={year}>
+<Course class={`computer-science/${year}`}>
   <blockquote>
     <p>There are only two hard things in Computer Science: cache invalidation and naming things.</p>
     <p><cite>Phil Karlton</cite></p>

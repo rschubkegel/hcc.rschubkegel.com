@@ -1,6 +1,7 @@
 ---
 name: Password Generator
 title: "Assignment: Password Generator"
+class: computer-science/2024
 date: 2024-09-25
 due: 2024-10-02
 time: 120

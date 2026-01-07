@@ -1,6 +1,7 @@
 ---
 name: Make a Quiz
 title: "Assignment: Make a Quiz"
+class: computer-science/2024
 date: 2024-09-12
 due: 2024-09-18
 time: 120

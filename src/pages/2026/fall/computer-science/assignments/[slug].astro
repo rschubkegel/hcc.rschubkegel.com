@@ -7,7 +7,7 @@ export const getStaticPaths = (async () => {
   // Get all slides from src/content/assignments/
   let assignments = await getCollection('assignments');
   // Limit assignments to specified date range
-  const startDate = DateTime.fromISO('2026-09-04');
+  const startDate = DateTime.fromISO('2026-09-01');
   const endDate = DateTime.fromISO('2027-01-31');
   assignments = assignments.filter(assignment => {
     const date = DateTime.fromJSDate(assignment.data.startDate);

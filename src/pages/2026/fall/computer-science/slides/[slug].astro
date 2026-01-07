@@ -10,7 +10,7 @@ export const getStaticPaths = (async () => {
   // Get all slides from src/content/slides/
   let slides = await getCollection('slides');
   // Limit slides to specified date range
-  const startDate = DateTime.fromISO('2026-09-04');
+  const startDate = DateTime.fromISO('2026-09-01');
   const endDate = DateTime.fromISO('2027-01-31');
   slides = slides.filter(slide => {
     const date = DateTime.fromJSDate(slide.data.date);

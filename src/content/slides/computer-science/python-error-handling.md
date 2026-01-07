@@ -2,7 +2,10 @@
 title: 'Python - Error Handling'
 class: computer-science/2024
 date: 2024-11-21
-time: 90
+time: 80
+topics:
+  - "CS: Error Handling"
+  - "Python - try/except"
 ---
 
 # Error Handling <!-- .element: class="r-fit-text" -->

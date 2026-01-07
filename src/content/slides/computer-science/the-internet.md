@@ -2,7 +2,10 @@
 title: 'The Internet'
 class: computer-science/2024
 date: 2024-09-26
-time: 90
+time: 30
+topics:
+  - "CS: The Internet"
+  - "Python: Lists"
 ---
 
 # The Internet <!-- .element: class="r-fit-text" -->

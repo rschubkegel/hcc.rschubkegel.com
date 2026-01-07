@@ -1,8 +1,10 @@
 ---
 title: 'Python - Pygame Collisions'
-class: computer-science/2024
-date: 2024-12-19
-time: 90
+class: computer-science/2025
+date: 2025-01-09
+time: 110
+topics:
+  - Flappy Bird pt 4
 ---
 
 # Pygame - Collisions <!-- .element: class="r-fit-text" -->

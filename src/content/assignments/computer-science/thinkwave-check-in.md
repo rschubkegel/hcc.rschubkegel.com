@@ -5,6 +5,8 @@ class: computer-science/2024
 date: 2024-09-04
 due: 2024-09-11
 time: 10
+topics:
+  - Getting Started
 ---
 
 ### Step One: Log in to ThinkWave

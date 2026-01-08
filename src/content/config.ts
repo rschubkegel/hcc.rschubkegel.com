@@ -13,6 +13,15 @@ const dateSchema = z.union([z.string(), z.date()]).transform(date => {
   return _date.toJSDate();
 });
 
+const classResourceSchema = z.object({
+  /** Name/label of the resource */
+  label: z.string(),
+  /** URL of the resource */
+  href: z.string(),
+  /** Description of the resource */
+  description: z.string(),
+});
+
 /** Slug is the unique identifier for the class. */
 const classSchema = z.object({
   /** Name of the class. */
@@ -23,6 +32,15 @@ const classSchema = z.object({
   startDate: dateSchema,
   /** Last day of the last semester of the class. */
   endDate: dateSchema,
+  /** Quote to display on the class homepage */
+  quote: z.object({
+    /** Quote text */
+    text: z.string(),
+    /** Quote author/attribution */
+    author: z.string(),
+  }).optional(),
+  /** Class-level resources that will be used throughout the course */
+  classResources: z.array(classResourceSchema).optional(),
 });
 
 const baseResourceSchema = z.object({

@@ -16,33 +16,30 @@ export const getStaticPaths = (async () => {
   let videos = await getCollection('videos')
   let games = await getCollection('games')
 
-  // Combine all resources into a single array
-  const computerScienceId = 'computer-science'
-  const computerScienceArticles = articles.filter(article => article.id.startsWith(computerScienceId)).flatMap(({ id, collection, data }) => data.map(resource => ({ id, collection, data: resource })))
-  const computerScienceAssignments = assignments.filter(assignment => assignment.id.startsWith(computerScienceId)).flat()
-  const computerScienceSlides = slides.filter(slide => slide.id.startsWith(computerScienceId)).flat()
-  const computerScienceVideos = videos.filter(video => video.id.startsWith(computerScienceId)).flatMap(({ id, collection, data }) => data.map(resource => ({ id, collection, data: resource })))
-  const computerScienceGames = games.filter(game => game.id.startsWith(computerScienceId)).flatMap(({ id, collection, data }) => data.map(resource => ({ id, collection, data: resource })))
-  const allResources = [...computerScienceArticles, ...computerScienceAssignments, ...computerScienceSlides, ...computerScienceVideos, ...computerScienceGames]
+  // Group resources by class
+  return classes.map(_class => {
+    // Extract class name and year from class ID (e.g., "computer-science/2024" -> "computer-science", "2024")
+    const classParts = _class.id.split('/')
+    const className = classParts[0]
+    const year = classParts[1] || _class.data.startDate.getFullYear().toString()
 
-  // Filter classes to only computer-science classes
-  const computerScienceClasses = classes.filter(_class => _class.id.startsWith(computerScienceId))
-
-  // Group resources by class slug
-  return computerScienceClasses.map(_class => {
     // Filter resources that match this class's slug
-    const classResources = allResources.filter(resource => resource.data.class === _class.id)
-
-    // Extract year from class ID (e.g., "computer-science/2024" -> "2024")
-    const year = _class.id.split('/').at(-1) || _class.data.startDate.getFullYear().toString()
+    const classArticles = articles.filter(article => article.id.startsWith(className)).flatMap(({ id, collection, data }) => data.filter(resource => resource.class === _class.id).map(resource => ({ id, collection, data: resource })))
+    const classAssignments = assignments.filter(assignment => assignment.id.startsWith(className) && assignment.data.class === _class.id)
+    const classSlides = slides.filter(slide => slide.id.startsWith(className) && slide.data.class === _class.id)
+    const classVideos = videos.filter(video => video.id.startsWith(className)).flatMap(({ id, collection, data }) => data.filter(resource => resource.class === _class.id).map(resource => ({ id, collection, data: resource })))
+    const classGames = games.filter(game => game.id.startsWith(className)).flatMap(({ id, collection, data }) => data.filter(resource => resource.class === _class.id).map(resource => ({ id, collection, data: resource })))
+    
+    const allResources = [...classArticles, ...classAssignments, ...classSlides, ...classVideos, ...classGames]
 
     return {
       params: {
+        class: className,
         year,
       },
       props: {
         class: _class,
-        resources: classResources.toSorted((a, b) => a.data.date.getTime() - b.data.date.getTime()),
+        resources: allResources.toSorted((a, b) => a.data.date.getTime() - b.data.date.getTime()),
       },
     }
   })
@@ -51,7 +48,7 @@ export const getStaticPaths = (async () => {
 const {
   props: { class: _class, resources },
   url: { pathname },
-  params: { year },
+  params: { class: className, year },
 } = Astro
 
 // Create an array of weeks, each as { startDate, endDate, resources }
@@ -93,59 +90,39 @@ const getAnchorTarget = (href: string | undefined) => {
 }
 ---
 
-<Course class={`computer-science/${year}`}>
-  <blockquote>
-    <p>There are only two hard things in Computer Science: cache invalidation and naming things.</p>
-    <p><cite>Phil Karlton</cite></p>
-  </blockquote>
+<Course class={`${className}/${year}`}>
+  {_class.data.quote && (
+    <blockquote>
+      <p>{_class.data.quote.text}</p>
+      <p><cite>{_class.data.quote.author}</cite></p>
+    </blockquote>
+  )}
   <h2><span class="secret-link">Course</span> Resources</h2>
-  <p>These resources will be used throughout the entirety of the course.</p>
-  <table>
-    <tbody>
-      <tr>
-        <td>
-          <a href="mailto:rylanschubkegel@gmail.com" target="_blank">rylanschubkegel@gmail.com</a>
-          <br /><a href="tel:+13608401401">360-840-1401</a>
-        </td>
-        <td> Instructor contact information. </td>
-      </tr>
-      <tr>
-        <td>
-          <a href={`${pathname}/syllabus`}>Course Syllabus</a>
-        </td>
-        <td> Includes an overview of the topics covered, grading criteria, and participation expectations. </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="https://replit.com/" target="_blank">Replit</a>
-        </td>
-        <td>
-          Online <abbr title="integrated development environment">IDE</abbr> used for coding; can be accessed from any computer via Google account or username/password.
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="https://code.visualstudio.com/" target="_blank">VS Code</a>
-        </td>
-        <td>
-          <abbr title="integrated development environment">IDE</abbr> used for coding; runs locally as a desktop application. Requires <a href="https://www.python.org/" target="_blank">Python</a> interpreter to be installed on your machine.
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="https://www.python.org/" target="_blank">Python</a>
-        </td>
-        <td> Python interpreter that runs `.py` files on your local machine. </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="https://www.pygame.org/docs/" target="_blank">Pygame</a>
-        </td>
-        <td> Documentation for the Pygame library which is used for making games in Python. </td>
-      </tr>
-    </tbody>
-  </table>
+  <p>These resources remain constant throughout the entirety of the course.</p>
+  {_class.data.classResources && _class.data.classResources.length > 0 && (
+    <table>
+      <tbody>
+        {_class.data.classResources.map((resource) => {
+          // If href doesn't start with http://, https://, or /, make it relative to pathname
+          const href = resource.href.startsWith('http://') || resource.href.startsWith('https://') || resource.href.startsWith('/')
+            ? resource.href
+            : `${pathname}/${resource.href}`;
+          return (
+            <tr>
+              <td>
+                <a href={href} target={getAnchorTarget(href)}>
+                  {resource.label}
+                </a>
+              </td>
+              <td>{resource.description}</td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+  )}
   <h2>Weekly Resources</h2>
+  <p>These resources are updated weekly as the course progresses.</p>
   <details>
     <summary>Legend</summary>
     <ul class="emoji">
@@ -218,3 +195,4 @@ const getAnchorTarget = (href: string | undefined) => {
     })
   }
 </script>
+

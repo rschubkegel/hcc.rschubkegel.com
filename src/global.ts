@@ -1,7 +1,7 @@
 import type { InferEntrySchema } from 'astro:content';
 import { DateTime } from 'luxon';
 
-export const SYMBOLS: Record<InferEntrySchema<'weekly-resources'>['resources'][number]['type'], string> = {
+export const SYMBOLS: Record<InferEntrySchema<'articles'>[number]['type'] | InferEntrySchema<'assignments'>['type'] | InferEntrySchema<'slides'>['type'] | InferEntrySchema<'videos'>[number]['type'] | InferEntrySchema<'games'>[number]['type'], string> = {
   'article': '📖',
   'assignment': '📝',
   'slides': '🎞️',
@@ -33,10 +33,10 @@ export const isHrefExternal = (href: string) => /^https?:\/\//.test(href);
 /**
  * Checks if an assignment is assigned before the current date.
  *
- * @param {string} id - The id of the assignment
+ * @param date - The date of the assignment
  */
-export const assignedBeforeNow = (id: string) => {
-  const date = DateTime.fromISO(id.slice(-10), { zone: 'America/Los_Angeles' });
-  const { milliseconds } = date.diffNow();
+export const assignedBeforeNow = (date: Date | string) => {
+  const _date = typeof date === 'string' ? DateTime.fromISO(date, { zone: 'America/Los_Angeles' }) : DateTime.fromJSDate(date, { zone: 'America/Los_Angeles' });
+  const { milliseconds } = _date.diffNow();
   return milliseconds < 0;
 };

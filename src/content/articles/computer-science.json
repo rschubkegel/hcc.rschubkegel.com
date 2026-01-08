@@ -1,0 +1,18 @@
+[
+    {
+        "title": "Syllabus Review",
+        "href": "/computer-science/2024/syllabus",
+        "class": "computer-science/2024",
+        "time": 10,
+        "date": "2024-09-04",
+        "topics": ["Getting Started"]
+    },
+    {
+        "title": "Syllabus Review",
+        "href": "/computer-science/2026/syllabus",
+        "class": "computer-science/2026",
+        "time": 10,
+        "date": "2026-09-03",
+        "topics": ["Class Introduction"]
+    }
+]

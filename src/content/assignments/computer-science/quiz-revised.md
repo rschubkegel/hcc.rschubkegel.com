@@ -1,13 +1,15 @@
 ---
-layout: "@layouts/Simple.astro"
+name: "Make a Quiz: Revised"
 title: "Assignment: Revised Quiz"
+class: computer-science/2024
+date: 2024-09-26
+due: 2024-10-02
+time: 120
+topics:
+  - Lists
+  - Loops
+  - Conditionals
 ---
-
-← [Class Homepage](/2024/fall/computer-science)
-
-# Make a Quiz: Revised
-
-<mark>Due 10/02 at 11:59</mark>
 
 Previously you made a [quiz game](/2024/fall/computer-science/assignments/quiz). In this project, you will _refactor_ the project and expand it with new features.
 

@@ -1,0 +1,47 @@
+{
+    "name": "Computer Science",
+    "description": "This class introduces students to the fundamental concepts of computer science, including an overview of how computers work. Students will learn about the hardware components of computers, operating systems, and the internet. Students will also learn the basics of computer programming using the Python language. Students will learn about control flow, variables, data types, functions, and problem solving. While some skills will be Python-specific, high-level concepts will be language agnostic.",
+    "startDate": "2024-09-04",
+    "endDate": "2025-01-22",
+    "quote": {
+        "text": "There are only two hard things in Computer Science: cache invalidation and naming things.",
+        "author": "Phil Karlton"
+    },
+    "classResources": [
+        {
+            "label": "rylanschubkegel@gmail.com",
+            "href": "mailto:rylanschubkegel@gmail.com",
+            "description": "Instructor email."
+        },
+        {
+            "label": "360-840-1401",
+            "href": "tel:3608401401",
+            "description": "Instructor phone number."
+        },
+        {
+            "label": "Class Syllabus",
+            "href": "syllabus",
+            "description": "Includes an overview of the topics covered, grading criteria, and participation expectations."
+        },
+        {
+            "label": "Replit",
+            "href": "https://replit.com/",
+            "description": "Online IDE used for coding; can be accessed from any computer via Google account or username/password."
+        },
+        {
+            "label": "VS Code",
+            "href": "https://code.visualstudio.com/",
+            "description": "IDE used for coding; runs locally as a desktop application. Requires Python interpreter to be installed on your machine."
+        },
+        {
+            "label": "Python",
+            "href": "https://www.python.org/",
+            "description": "Python interpreter that runs .py files on your local machine."
+        },
+        {
+            "label": "Pygame",
+            "href": "https://www.pygame.org/docs/",
+            "description": "Documentation for the Pygame library which is used for making games in Python."
+        }
+    ]
+}

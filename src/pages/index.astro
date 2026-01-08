@@ -1,5 +1,12 @@
 ---
 import Simple from '@layouts/Simple.astro'
+import { getCollection } from 'astro:content'
+
+// Get all classes from src/content/classes/
+const classes = await getCollection('classes')
+
+// Sort by start date
+const sortedClasses = classes.toSorted((a, b) => b.data.startDate.getTime() - a.data.startDate.getTime())
 ---
 
 <Simple title="Rylan Schubkegel | HCC">
@@ -11,19 +18,21 @@ import Simple from '@layouts/Simple.astro'
   <table>
     <thead>
       <tr>
-        <th>Year / Semester</th>
+        <th>Academic Year</th>
         <th>Class</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>2026 Fall</td>
-        <td><a href="/2026/fall/computer-science">Computer Science</a></td>
-      </tr>
-      <tr>
-        <td>2024 Fall</td>
-        <td><a href="/2024/fall/computer-science">Computer Science</a></td>
-      </tr>
+      {
+        sortedClasses.map(_class => (
+          <tr>
+            <td>{_class.data.startDate.getFullYear()}</td>
+            <td>
+              <a href={`/${_class.id}`}>{_class.data.name}</a>
+            </td>
+          </tr>
+        ))
+      }
     </tbody>
   </table>
 </Simple>

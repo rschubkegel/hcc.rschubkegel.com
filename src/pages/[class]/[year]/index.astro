@@ -1,0 +1,198 @@
+---
+import Course from '@layouts/Course.astro';
+import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
+import { DateTime } from 'luxon';
+import { assignedBeforeNow, capitalizeString, formatWeekString, isHrefExternal, SYMBOLS } from 'src/global';
+
+export const getStaticPaths = (async () => {
+  // Get all classes from src/content/classes/
+  const classes = await getCollection('classes')
+  
+  // Get all articles, assignments, slides, videos, and games from src/content/
+  let articles = await getCollection('articles')
+  let assignments = await getCollection('assignments')
+  let slides = await getCollection('slides')
+  let videos = await getCollection('videos')
+  let games = await getCollection('games')
+
+  // Group resources by class
+  return classes.map(_class => {
+    // Extract class name and year from class ID (e.g., "computer-science/2024" -> "computer-science", "2024")
+    const classParts = _class.id.split('/')
+    const className = classParts[0]
+    const year = classParts[1] || _class.data.startDate.getFullYear().toString()
+
+    // Filter resources that match this class's slug
+    const classArticles = articles.filter(article => article.id.startsWith(className)).flatMap(({ id, collection, data }) => data.filter(resource => resource.class === _class.id).map(resource => ({ id, collection, data: resource })))
+    const classAssignments = assignments.filter(assignment => assignment.id.startsWith(className) && assignment.data.class === _class.id)
+    const classSlides = slides.filter(slide => slide.id.startsWith(className) && slide.data.class === _class.id)
+    const classVideos = videos.filter(video => video.id.startsWith(className)).flatMap(({ id, collection, data }) => data.filter(resource => resource.class === _class.id).map(resource => ({ id, collection, data: resource })))
+    const classGames = games.filter(game => game.id.startsWith(className)).flatMap(({ id, collection, data }) => data.filter(resource => resource.class === _class.id).map(resource => ({ id, collection, data: resource })))
+    
+    const allResources = [...classArticles, ...classAssignments, ...classSlides, ...classVideos, ...classGames]
+
+    return {
+      params: {
+        class: className,
+        year,
+      },
+      props: {
+        class: _class,
+        resources: allResources.toSorted((a, b) => a.data.date.getTime() - b.data.date.getTime()),
+      },
+    }
+  })
+}) satisfies GetStaticPaths
+
+const {
+  props: { class: _class, resources },
+  url: { pathname },
+  params: { class: className, year },
+} = Astro
+
+// Create an array of weeks, each as { startDate, endDate, resources }
+const classStartDate = DateTime.fromJSDate(_class.data.startDate, { zone: 'America/Los_Angeles' });
+const classEndDate = DateTime.fromJSDate(_class.data.endDate, { zone: 'America/Los_Angeles' });
+const diffWeeks = Math.ceil(classEndDate.diff(classStartDate, 'weeks').weeks);
+let resourcesByWeek: {
+  startDate: DateTime;
+  endDate: DateTime;
+  resources: typeof resources;
+}[] = [];
+for (let week = 0; week < diffWeeks; week++) {
+  const weekStart = classStartDate.plus({ weeks: week });
+  const weekEnd = weekStart.endOf('week');
+  const weekResources = resources.filter(r => {
+    const d = DateTime.fromJSDate(r.data.date, { zone: 'America/Los_Angeles' });
+    return d >= weekStart && d <= weekEnd;
+  });
+  resourcesByWeek.push({
+    startDate: weekStart,
+    endDate: weekEnd,
+    resources: weekResources,
+  });
+}
+
+const getResourceHref = (resource: (typeof resources)[number]) => {
+  if (!resource.data.href) {
+    const slug = resource.id.split('/').at(1)?.split('.').at(0)
+    if (slug) {
+      return `${pathname}/${resource.collection}/${slug}`
+    }
+  }
+  return resource.data.href
+}
+
+const getAnchorTarget = (href: string | undefined) => {
+  // external links opened in new tab
+  return href && isHrefExternal(href) ? '_blank' : undefined
+}
+---
+
+<Course class={`${className}/${year}`}>
+  {_class.data.quote && (
+    <blockquote>
+      <p>{_class.data.quote.text}</p>
+      <p><cite>{_class.data.quote.author}</cite></p>
+    </blockquote>
+  )}
+  <h2><span class="secret-link">Course</span> Resources</h2>
+  <p>These resources remain constant throughout the entirety of the course.</p>
+  {_class.data.classResources && _class.data.classResources.length > 0 && (
+    <table>
+      <tbody>
+        {_class.data.classResources.map((resource) => {
+          // If href doesn't start with http://, https://, or /, make it relative to pathname
+          const href = resource.href.startsWith('http://') || resource.href.startsWith('https://') || resource.href.startsWith('/')
+            ? resource.href
+            : `${pathname}/${resource.href}`;
+          return (
+            <tr>
+              <td>
+                <a href={href} target={getAnchorTarget(href)}>
+                  {resource.label}
+                </a>
+              </td>
+              <td>{resource.description}</td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+  )}
+  <h2>Weekly Resources</h2>
+  <p>These resources are updated weekly as the course progresses.</p>
+  <details>
+    <summary>Legend</summary>
+    <ul class="emoji">
+      {
+        Object.entries(SYMBOLS).map(([title, emoji]) => (
+          <li>
+            {emoji} {capitalizeString(title)}
+          </li>
+        ))
+      }
+    </ul>
+  </details>
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th hidden>Topic(s)</th>
+        <th>Resources</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        resourcesByWeek.map(({ startDate, resources }, index) => (
+          <tr style={`display: ${assignedBeforeNow(startDate.toISO()!) ? 'table-row' : 'none'};`}>
+            <td>
+              <strong>Week {index + 1}</strong>
+              <br>
+              <em>{formatWeekString(startDate.toISO()!)}</em>
+            </td>
+            <td hidden>
+              <ul>
+                {resources
+                  .flatMap(resource => resource.data.topics)
+                  .map(topic => (
+                    <li>{topic}</li>
+                  ))}
+              </ul>
+              {resources.flatMap(resource => resource.data.topics).length === 0 && <p>N/A</p>}
+            </td>
+            <td>
+              <ul class="emoji">
+                {resources.map(resource => (
+                  <li>
+                    {SYMBOLS[resource.data.type as keyof typeof SYMBOLS]}{' '}
+                    <a href={getResourceHref(resource)} target={getAnchorTarget(resource.data.href)}>
+                      {resource.data.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</Course>
+
+<script>
+  let clicks = 0
+  const element = document.querySelector<HTMLElement>('.secret-link')
+  if (element) {
+    element.addEventListener('click', () => {
+      clicks += 1
+      if (clicks === 3) {
+        let href = window.location.href
+        if (href.at(-1) === '/') href = href.slice(0, -1)
+        window.location.href = href + '/instructor'
+      }
+    })
+  }
+</script>
+

@@ -3,7 +3,7 @@ layout: "@layouts/Simple.astro"
 title: "Assignment: Revised Quiz"
 ---
 
-← [Course Homepage](/2024/fall/computer-science)
+← [Class Homepage](/2024/fall/computer-science)
 
 # Make a Quiz: Revised
 

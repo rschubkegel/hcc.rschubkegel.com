@@ -55,7 +55,7 @@ NOTES:
 
 ---
 
-## About This Course
+## About This Class
 
 ⬇️⬇️⬇️
 
@@ -63,10 +63,10 @@ NOTES:
 
 ### Resources
 
-[Course Site](/2024/fall/computer-science/)
+[Class Site](/2024/fall/computer-science/)
 
 NOTES:
-- Course resources are generic to the whole course
+- Class resources are generic to the whole class
 - Weekly resources are specific to each week
 
 --
@@ -76,7 +76,7 @@ NOTES:
 [Syllabus](/2024/fall/computer-science/syllabus)
 
 NOTE:
-- Course goals are _not_ just programming
+- Class goals are _not_ just programming
 - **Make sure to emphasize assignment expectations**
 
 ---

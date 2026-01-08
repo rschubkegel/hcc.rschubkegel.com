@@ -39,7 +39,7 @@ const classSchema = z.object({
     /** Quote author/attribution */
     author: z.string(),
   }).optional(),
-  /** Class-level resources that will be used throughout the course */
+  /** Class-level resources that will be used throughout the class */
   classResources: z.array(classResourceSchema).optional(),
 });
 

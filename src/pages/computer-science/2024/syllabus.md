@@ -1,10 +1,10 @@
 ---
 layout: "@layouts/Course.astro"
-course: computer-science
+class: computer-science/2024
 year: 2024
 ---
 
-← [Course Homepage](/computer-science/2024)
+← [Class Homepage](/computer-science/2024)
 
 # Syllabus
 

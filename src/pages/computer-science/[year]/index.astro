@@ -1,9 +1,9 @@
 ---
-import Course from '@layouts/Course.astro'
-import type { GetStaticPaths } from 'astro'
-import { getCollection } from 'astro:content'
-import { assignedBeforeNow, capitalizeString, isHrefExternal, SYMBOLS } from 'src/global'
-import { DateTime } from 'luxon'
+import Course from '@layouts/Course.astro';
+import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
+import { DateTime } from 'luxon';
+import { assignedBeforeNow, capitalizeString, formatWeekString, isHrefExternal, SYMBOLS } from 'src/global';
 
 export const getStaticPaths = (async () => {
   // Get all classes from src/content/classes/
@@ -32,15 +32,16 @@ export const getStaticPaths = (async () => {
   return computerScienceClasses.map(_class => {
     // Filter resources that match this class's slug
     const classResources = allResources.filter(resource => resource.data.class === _class.id)
-    
+
     // Extract year from class ID (e.g., "computer-science/2024" -> "2024")
     const year = _class.id.split('/').at(-1) || _class.data.startDate.getFullYear().toString()
-    
+
     return {
       params: {
         year,
       },
       props: {
+        class: _class,
         resources: classResources.toSorted((a, b) => a.data.date.getTime() - b.data.date.getTime()),
       },
     }
@@ -48,23 +49,33 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths
 
 const {
-  props: { resources },
+  props: { class: _class, resources },
   url: { pathname },
   params: { year },
 } = Astro
 
-// Group resources by assignment week
-let resourcesByDate = resources.reduce(
-  (acc, resource) => {
-    const date = resource.data.date.toISOString().slice(0, 10)
-    if (!acc[date]) {
-      acc[date] = []
-    }
-    acc[date].push(resource)
-    return acc
-  },
-  {} as Record<string, (typeof resources)[number][]>,
-)
+// Create an array of weeks, each as { startDate, endDate, resources }
+const classStartDate = DateTime.fromJSDate(_class.data.startDate, { zone: 'America/Los_Angeles' });
+const classEndDate = DateTime.fromJSDate(_class.data.endDate, { zone: 'America/Los_Angeles' });
+const diffWeeks = Math.ceil(classEndDate.diff(classStartDate, 'weeks').weeks);
+let resourcesByWeek: {
+  startDate: DateTime;
+  endDate: DateTime;
+  resources: typeof resources;
+}[] = [];
+for (let week = 0; week < diffWeeks; week++) {
+  const weekStart = classStartDate.plus({ weeks: week });
+  const weekEnd = weekStart.endOf('week');
+  const weekResources = resources.filter(r => {
+    const d = DateTime.fromJSDate(r.data.date, { zone: 'America/Los_Angeles' });
+    return d >= weekStart && d <= weekEnd;
+  });
+  resourcesByWeek.push({
+    startDate: weekStart,
+    endDate: weekEnd,
+    resources: weekResources,
+  });
+}
 
 const getResourceHref = (resource: (typeof resources)[number]) => {
   if (!resource.data.href) {
@@ -157,10 +168,12 @@ const getAnchorTarget = (href: string | undefined) => {
     </thead>
     <tbody>
       {
-        Object.entries(resourcesByDate).map(([date, resources]) => (
-          <tr style={`display: ${assignedBeforeNow(date) ? 'table-row' : 'none'};`}>
+        resourcesByWeek.map(({ startDate, resources }, index) => (
+          <tr style={`display: ${assignedBeforeNow(startDate.toISO()!) ? 'table-row' : 'none'};`}>
             <td>
-              <em>{DateTime.fromISO(date, { zone: 'America/Los_Angeles' }).toLocaleString({ month: 'short', day: 'numeric' })}</em>
+              <strong>Week {index + 1}</strong>
+              <br>
+              <em>{formatWeekString(startDate.toISO()!)}</em>
             </td>
             <td hidden>
               <ul>

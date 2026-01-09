@@ -581,5 +581,63 @@
     "topics": [
       "Variables"
     ]
+  },
+  {
+    "title": "W3 Schools: Syntax",
+    "href": "https://youtu.be/4WVZBtqqVM4?si=-FuRvQ000TfWrAaW",
+    "class": "computer-science/2026",
+    "date": "2026-09-11",
+    "time": 5,
+    "topics": [
+      "Syntax"
+    ]
+  },
+  {
+    "title": "Bro Code: Variables",
+    "href": "https://youtu.be/7IoQ5BGkTJo?si=OhgWd3FTHJISfLGn",
+    "class": "computer-science/2026",
+    "date": "2026-09-11",
+    "time": 10,
+    "topics": [
+      "Variables"
+    ]
+  },
+  {
+    "title": "How Computers Work: Circuits & Logic",
+    "href": "https://youtu.be/ZoqMiFKspAA?si=3JQqovmwxm8m4FfF",
+    "class": "computer-science/2026",
+    "date": "2026-09-18",
+    "time": 5,
+    "topics": [
+      "Logic"
+    ]
+  },
+  {
+    "title": "Crash Course: Boolean Logic & Logic Gates",
+    "href": "https://youtu.be/gI-qXk7XojA?si=2QGEyi5CLA2I1hrc",
+    "class": "computer-science/2026",
+    "date": "2026-09-18",
+    "time": 15,
+    "topics": [
+      "Logic"
+    ]
+  },
+  {
+    "title": "W3 Schools: Output Variables with print()",
+    "href": "https://youtu.be/cVUwwZ9IVGI?si=ZoxHEOA-iyCx6I_y",
+    "class": "computer-science/2026",
+    "date": "2026-09-18",
+    "time": 5,
+    "topics": []
+  },
+  {
+    "title": "Bro Code: If Statements",
+    "href": "https://youtu.be/FvMPfrgGeKs?si=5hNKEGTBxLX8E_Eh",
+    "class": "computer-science/2026",
+    "date": "2026-09-18",
+    "time": 10,
+    "topics": [
+      "Conditions"
+    ]
   }
 ]

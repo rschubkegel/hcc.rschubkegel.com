@@ -29,7 +29,7 @@
         "class": "computer-science/2026",
         "time": 25,
         "date": "2026-09-11",
-        "topics": ["Variables"]
+        "topics": ["Syntax"]
     },
     {
         "title": "Variables and Naming Conventions",
@@ -46,5 +46,37 @@
         "time": 30,
         "date": "2026-09-11",
         "topics": ["Variables"]
+    },
+    {
+        "title": "String Formatting",
+        "href": "https://www.learnpython.org/en/String_Formatting",
+        "class": "computer-science/2026",
+        "time": 20,
+        "date": "2026-09-18",
+        "topics": ["Variables"]
+    },
+    {
+        "title": "String Formatting",
+        "href": "https://www.pythontutorial.net/python-basics/python-string/",
+        "class": "computer-science/2026",
+        "time": 40,
+        "date": "2026-09-18",
+        "topics": ["Variables"]
+    },
+    {
+        "title": "Basic String Operations",
+        "href": "https://www.learnpython.org/en/Basic_String_Operations",
+        "class": "computer-science/2026",
+        "time": 40,
+        "date": "2026-09-18",
+        "topics": ["Variables"]
+    },
+    {
+        "title": "Conditions",
+        "href": "https://www.learnpython.org/en/Conditions",
+        "class": "computer-science/2026",
+        "time": 20,
+        "date": "2026-09-18",
+        "topics": ["Conditions"]
     }
 ]

@@ -3,7 +3,7 @@ import Course from '@layouts/Course.astro';
 import type { GetStaticPaths } from 'astro';
 import { getCollection } from 'astro:content';
 import { DateTime } from 'luxon';
-import { assignedBeforeNow, capitalizeString, formatWeekString, isHrefExternal, SYMBOLS } from 'src/global';
+import { assignedBeforeNow, capitalizeString, formatWeekString, getAnchorTarget, getResourceHref, isHrefExternal, SYMBOLS } from 'src/global';
 
 export const getStaticPaths = (async () => {
   // Get all classes from src/content/classes/
@@ -72,21 +72,6 @@ for (let week = 0; week < diffWeeks; week++) {
     endDate: weekEnd,
     resources: weekResources,
   });
-}
-
-const getResourceHref = (resource: (typeof resources)[number]) => {
-  if (!resource.data.href) {
-    const slug = resource.id.split('/').at(1)?.split('.').at(0)
-    if (slug) {
-      return `${pathname}/${resource.collection}/${slug}`
-    }
-  }
-  return resource.data.href
-}
-
-const getAnchorTarget = (href: string | undefined) => {
-  // external links opened in new tab
-  return href && isHrefExternal(href) ? '_blank' : undefined
 }
 ---
 
@@ -167,7 +152,7 @@ const getAnchorTarget = (href: string | undefined) => {
                 {resources.map(resource => (
                   <li>
                     {SYMBOLS[resource.data.type as keyof typeof SYMBOLS]}{' '}
-                    <a href={getResourceHref(resource)} target={getAnchorTarget(resource.data.href)}>
+                    <a href={getResourceHref(resource, pathname)} target={getAnchorTarget(getResourceHref(resource, pathname))}>
                       {resource.data.title}
                     </a>
                   </li>

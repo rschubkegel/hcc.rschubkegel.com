@@ -1,4 +1,4 @@
-import type { InferEntrySchema } from 'astro:content';
+import type { DataEntryMap, InferEntrySchema } from 'astro:content';
 import { DateTime } from 'luxon';
 
 export const SYMBOLS: Record<InferEntrySchema<'articles'>[number]['type'] | InferEntrySchema<'assignments'>['type'] | InferEntrySchema<'slides'>['type'] | InferEntrySchema<'videos'>[number]['type'] | InferEntrySchema<'games'>[number]['type'], string> = {
@@ -40,3 +40,31 @@ export const assignedBeforeNow = (date: Date | string) => {
   const { milliseconds } = _date.diffNow();
   return milliseconds < 0;
 };
+
+/**
+ * Computes the relative href for a resource.
+ */
+export const getResourceHref = (resource: {
+  id: string;
+  collection: string;
+  data: { href?: string };
+}, pathname?: string) => {
+  // If the resource has a resources property, return the href
+  if (resource.data.href) {
+    return resource.data.href;
+  }
+
+  // Return relative href based on collection and slug
+  const slug = resource.id.split('/').at(1)?.split('.').at(0)
+  if (slug) {
+    return `${pathname ?? ''}/${resource.collection}/${slug}`;
+  }
+}
+
+/**
+ * Computes the anchor target for a link.
+ */
+export const getAnchorTarget = (href: string | undefined) => {
+  // external links opened in new tab
+  return href && isHrefExternal(href) ? '_blank' : undefined
+}

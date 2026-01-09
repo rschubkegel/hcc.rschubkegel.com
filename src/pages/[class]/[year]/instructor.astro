@@ -1,7 +1,7 @@
 ---
 import Course from '@layouts/Course.astro';
 import { getCollection } from 'astro:content';
-import { formatWeekString, isHrefExternal, SYMBOLS } from 'src/global';
+import { formatWeekString, getAnchorTarget, getResourceHref, isHrefExternal, SYMBOLS } from 'src/global';
 import Gatekeeper from '@components/ShowForInstructor.tsx';
 import type { GetStaticPaths } from 'astro';
 
@@ -22,7 +22,10 @@ export const getStaticPaths = (async () => {
   })
 }) satisfies GetStaticPaths
 
-const { props: { class: _class } } = Astro;
+const { props: { class: _class }, url: { pathname } } = Astro;
+
+// Remove /instructor from pathname so links are relative to the class homepage
+const _pathname = pathname.replace(/\/instructor$/, '')
 
 // Import examples for each class
 const exampleImports = import.meta.glob('../../../../../public/2024/fall/computer-science/examples/*.py', { eager: true });
@@ -126,7 +129,10 @@ let totalMinutes = resourcesWithCumulativeMinutes.reduce((a, b) => a + b.minutes
                       {
                         resources.map(resource => (
                           <li>
-                            {SYMBOLS[resource.data.type as keyof typeof SYMBOLS]} <a href={resource.data.href ?? ''} target={isHrefExternal(resource.data.href ?? '') ? '_blank' : undefined}>{resource.data.title}</a>
+                            {SYMBOLS[resource.data.type as keyof typeof SYMBOLS]}{' '}
+                            <a href={getResourceHref(resource, _pathname)} target={getAnchorTarget(getResourceHref(resource, pathname))}>
+                              {resource.data.title}
+                            </a>
                           </li>
                         ))
                       }

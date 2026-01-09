@@ -1,4 +1,4 @@
-import { z, defineCollection } from 'astro:content';
+import { z, defineCollection, type InferEntrySchema } from 'astro:content';
 import { DateTime } from 'luxon';
 
 const zone = 'America/Los_Angeles';

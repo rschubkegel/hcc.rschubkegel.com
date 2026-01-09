@@ -3,7 +3,7 @@ import Course from '@layouts/Course.astro';
 import type { GetStaticPaths } from 'astro';
 import { getCollection } from 'astro:content';
 import { DateTime } from 'luxon';
-import { assignedBeforeNow, capitalizeString, formatWeekString, getAnchorTarget, getResourceHref, isHrefExternal, SYMBOLS } from 'src/global';
+import { assignedBeforeNow, capitalizeString, formatWeekString, getAnchorTarget, getResourceHref, resourceSorter, SYMBOLS } from 'src/global';
 
 export const getStaticPaths = (async () => {
   // Get all classes from src/content/classes/
@@ -139,8 +139,8 @@ for (let week = 0; week < diffWeeks; week++) {
             </td>
             <td hidden>
               <ul>
-                {resources
-                  .flatMap(resource => resource.data.topics)
+                {Array
+                  .from(new Set(resources.flatMap(resource => resource.data.topics)))
                   .map(topic => (
                     <li>{topic}</li>
                   ))}
@@ -149,7 +149,7 @@ for (let week = 0; week < diffWeeks; week++) {
             </td>
             <td>
               <ul class="emoji">
-                {resources.map(resource => (
+                {resources.toSorted(resourceSorter).map(resource => (
                   <li>
                     {SYMBOLS[resource.data.type as keyof typeof SYMBOLS]}{' '}
                     <a href={getResourceHref(resource, pathname)} target={getAnchorTarget(getResourceHref(resource, pathname))}>

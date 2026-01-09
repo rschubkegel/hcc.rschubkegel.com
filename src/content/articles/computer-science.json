@@ -5,14 +5,46 @@
         "class": "computer-science/2024",
         "time": 10,
         "date": "2024-09-04",
-        "topics": ["Getting Started"]
+        "topics": ["Class Introduction"]
     },
     {
         "title": "Syllabus Review",
         "href": "/computer-science/2026/syllabus",
         "class": "computer-science/2026",
-        "time": 10,
+        "time": 15,
         "date": "2026-09-03",
         "topics": ["Class Introduction"]
+    },
+    {
+        "title": "Hello, World!",
+        "href": "https://www.learnpython.org/en/Hello%2C_World%21",
+        "class": "computer-science/2026",
+        "time": 20,
+        "date": "2026-09-03",
+        "topics": []
+    },
+    {
+        "title": "Python Syntax",
+        "href": "https://www.pythontutorial.net/python-basics/python-syntax/",
+        "class": "computer-science/2026",
+        "time": 25,
+        "date": "2026-09-11",
+        "topics": ["Variables"]
+    },
+    {
+        "title": "Variables and Naming Conventions",
+        "href": "https://www.pythontutorial.net/python-basics/python-variables/",
+        "class": "computer-science/2026",
+        "time": 25,
+        "date": "2026-09-11",
+        "topics": ["Variables"]
+    },
+    {
+        "title": "Variables and Data Types",
+        "href": "https://www.learnpython.org/en/Variables_and_Types",
+        "class": "computer-science/2026",
+        "time": 30,
+        "date": "2026-09-11",
+        "topics": ["Variables"]
     }
 ]

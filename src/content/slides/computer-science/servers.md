@@ -2,7 +2,7 @@
 title: 'Servers & The Cloud'
 class: computer-science/2024
 date: 2024-10-03
-time: 90
+time: 0
 ---
 
 # Servers & The Cloud <!-- .element: class="r-fit-text" -->

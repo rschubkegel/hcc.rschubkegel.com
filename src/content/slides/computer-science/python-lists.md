@@ -2,7 +2,7 @@
 title: 'Python - Lists'
 class: computer-science/2024
 date: 2024-09-26
-time: 90
+time: 0
 ---
 
 # Python Lists <!-- .element: class="r-fit-text" -->

@@ -1,4 +1,4 @@
-import type { DataEntryMap, InferEntrySchema } from 'astro:content';
+import type { InferEntrySchema } from 'astro:content';
 import { DateTime } from 'luxon';
 
 export const SYMBOLS: Record<InferEntrySchema<'articles'>[number]['type'] | InferEntrySchema<'assignments'>['type'] | InferEntrySchema<'slides'>['type'] | InferEntrySchema<'videos'>[number]['type'] | InferEntrySchema<'games'>[number]['type'], string> = {
@@ -67,4 +67,10 @@ export const getResourceHref = (resource: {
 export const getAnchorTarget = (href: string | undefined) => {
   // external links opened in new tab
   return href && isHrefExternal(href) ? '_blank' : undefined
+}
+
+const RESOURCE_SORT_ORDER = ['slides', 'video', 'article', 'game', 'assignment'] as const;
+
+export const resourceSorter = (a: { data: { type: typeof RESOURCE_SORT_ORDER[number] } }, b: { data: { type: typeof RESOURCE_SORT_ORDER[number] } }) => {
+  return RESOURCE_SORT_ORDER.indexOf(a.data.type) - RESOURCE_SORT_ORDER.indexOf(b.data.type);
 }

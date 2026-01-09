@@ -2,7 +2,7 @@
 title: 'Python - More on Files'
 class: computer-science/2024
 date: 2024-11-07
-time: 90
+time: 0
 topics:
   - "CS: Special Files"
   - "Python - More Files"

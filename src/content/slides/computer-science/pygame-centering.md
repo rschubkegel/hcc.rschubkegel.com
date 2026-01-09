@@ -2,7 +2,7 @@
 title: 'Python - Centering Drawings'
 class: computer-science/2024
 date: 2024-12-19
-time: 50
+time: 0
 topics:
   - Python - Pygame Collisions
 ---

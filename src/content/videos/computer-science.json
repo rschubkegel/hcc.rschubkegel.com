@@ -518,5 +518,68 @@
     "topics": [
       "Flappy Bird pt 4"
     ]
+  },
+  {
+    "title": "How Computers Work: What Makes a Computer A Computer?",
+    "href": "https://youtu.be/mCq8-xTH7jA?si=Xd8vFaW51kNiU0af",
+    "class": "computer-science/2026",
+    "date": "2026-09-03",
+    "time": 10,
+    "topics": [
+      "Class Introduction",
+      "What is a Computer"
+    ]
+  },
+  {
+    "title": "Crash Course: Early Computing",
+    "href": "https://youtu.be/O5nskjZ_GoI?si=JM10bQGGxjbx8SpM",
+    "class": "computer-science/2026",
+    "date": "2026-09-03",
+    "time": 15,
+    "topics": [
+      "History",
+      "What is a Computer"
+    ]
+  },
+  {
+    "title": "Crash Course: Electronic Computing",
+    "href": "https://youtu.be/LN0ucKNX0hc?si=s6dbk2aFQHSMnNOA",
+    "class": "computer-science/2026",
+    "date": "2026-09-03",
+    "time": 15,
+    "topics": [
+      "History",
+      "What is a Computer"
+    ]
+  },
+  {
+    "title": "How Computers Work: Binary",
+    "href": "https://youtu.be/USCBCmwMCDA?si=ngVXOXmicfYcUkjK",
+    "class": "computer-science/2026",
+    "date": "2026-09-11",
+    "time": 10,
+    "topics": [
+      "Binary"
+    ]
+  },
+  {
+    "title": "Crash Course: Binary",
+    "href": "https://youtu.be/1GSjbWt0c9M?si=gSTBM3JIlhTgNz33",
+    "class": "computer-science/2026",
+    "date": "2026-09-11",
+    "time": 15,
+    "topics": [
+      "Binary"
+    ]
+  },
+  {
+    "title": "W3 Schools: Variables",
+    "href": "https://youtu.be/Gf9wLsCJDqc?si=1dqCD1uYS-zMaOqq",
+    "class": "computer-science/2026",
+    "date": "2026-09-11",
+    "time": 5,
+    "topics": [
+      "Variables"
+    ]
   }
 ]

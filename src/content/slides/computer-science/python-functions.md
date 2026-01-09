@@ -2,7 +2,7 @@
 title: 'Python - Functions'
 class: computer-science/2024
 date: 2024-10-03
-time: 90
+time: 0
 ---
 
 # Python - Functions <!-- .element: class="r-fit-text" -->

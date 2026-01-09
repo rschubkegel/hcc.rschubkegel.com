@@ -1,9 +1,9 @@
 ---
-import Course from '@layouts/Course.astro';
-import { getCollection } from 'astro:content';
-import { formatWeekString, getAnchorTarget, getResourceHref, isHrefExternal, SYMBOLS } from 'src/global';
 import Gatekeeper from '@components/ShowForInstructor.tsx';
+import Course from '@layouts/Course.astro';
 import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
+import { formatWeekString, getAnchorTarget, getResourceHref, resourceSorter, SYMBOLS } from 'src/global';
 
 export const getStaticPaths = (async () => {
   // Get all classes from src/content/classes/
@@ -69,8 +69,29 @@ let resourcesWithCumulativeMinutes = Object.entries(resourcesByDate).map(([date,
   }
 })
 
+
+// Calculated with the assumption that a student needs 75 hours / 16 weeks = 4.6875 hours per week
+const IDEAL_WEEKLY_MINUTES = 280;
+const WEEKLY_MINUTES_IN_CLASS = 110;
+const IDEAL_WEEKLY_RESOURCE_MINUTES = IDEAL_WEEKLY_MINUTES - WEEKLY_MINUTES_IN_CLASS;
+
 // Calculate total minutes
-let totalMinutes = resourcesWithCumulativeMinutes.reduce((a, b) => a + b.minutes, 0)
+let totalMinutes = resourcesWithCumulativeMinutes.reduce((a, b) => a + b.minutes, 0);
+totalMinutes += WEEKLY_MINUTES_IN_CLASS * resourcesWithCumulativeMinutes.length;
+
+const getEstimateStatus = (minutes: number) => {
+  if (minutes < IDEAL_WEEKLY_RESOURCE_MINUTES - 60) return 'bad';
+  else if (minutes < IDEAL_WEEKLY_RESOURCE_MINUTES - 30) return 'good';
+  else if (minutes < IDEAL_WEEKLY_RESOURCE_MINUTES + 45) return 'ideal';
+  else if (minutes < IDEAL_WEEKLY_RESOURCE_MINUTES + 90) return 'good';
+  else return 'bad';
+}
+
+const STATUS_TO_STYLE = {
+  ideal: 'background:#6d68;color:#000',
+  good: 'background:#fd48;color:#000',
+  bad: 'background:#f668;color:#000',
+}
 ---
 
 <Course class={_class.id}>
@@ -91,12 +112,13 @@ let totalMinutes = resourcesWithCumulativeMinutes.reduce((a, b) => a + b.minutes
           ))}
         </ul>
         <h2>All Weekly Resources</h2>
-        <table>
+        <table style="width:100%;">
           <thead>
             <tr>
               <th>Week</th>
               <th>Topic(s)</th>
               <th>Resources</th>
+              <th>Time Estimate</th>
             </tr>
           </thead>
           <tbody>
@@ -110,15 +132,11 @@ let totalMinutes = resourcesWithCumulativeMinutes.reduce((a, b) => a + b.minutes
                     <div>
                       <em>{formatWeekString(date, { duration: index === 0 ? (1000 * 60 * 60 * 24 * 7) : undefined })}</em>
                     </div>
-                    <div style="text-align:center;background:#8888;border-radius:2px;padding:0 4px;">
-                      {minutes >= 60 ? <span>{Math.floor(minutes / 60)} hr</span> : ''}
-                      <span>{minutes % 60} min</span>
-                    </div>
                   </td>
                   <td>
                     <ul>
                       {
-                        resources.flatMap(resource => resource.data.topics).map(topic => (
+                        Array.from(new Set(resources.flatMap(resource => resource.data.topics))).map(topic => (
                           <li>{topic}</li>
                         ))
                       }
@@ -127,7 +145,7 @@ let totalMinutes = resourcesWithCumulativeMinutes.reduce((a, b) => a + b.minutes
                   <td>
                     <ul class="emoji">
                       {
-                        resources.map(resource => (
+                        resources.toSorted(resourceSorter).map(resource => (
                           <li>
                             {SYMBOLS[resource.data.type as keyof typeof SYMBOLS]}{' '}
                             <a href={getResourceHref(resource, _pathname)} target={getAnchorTarget(getResourceHref(resource, pathname))}>
@@ -138,6 +156,12 @@ let totalMinutes = resourcesWithCumulativeMinutes.reduce((a, b) => a + b.minutes
                       }
                     </ul>
                   </td>
+                  <td>
+                    <div style={`text-align:center;border-radius:2px;padding:0 4px;${STATUS_TO_STYLE[getEstimateStatus(minutes)]}`}>
+                      {minutes >= 60 ? <span>{Math.floor(minutes / 60)} hr</span> : ''}
+                      <span>{minutes % 60} min</span>
+                    </div>
+                  </td>
                 </tr>
               ))
             }
@@ -145,6 +169,7 @@ let totalMinutes = resourcesWithCumulativeMinutes.reduce((a, b) => a + b.minutes
               <td>
                 <strong>Cumulative</strong>
               </td>
+              <td>N/A</td>
               <td>N/A</td>
               <td>{Math.floor(totalMinutes / 60)} hr {Math.floor(totalMinutes % 60)} min</td>
             </tr>

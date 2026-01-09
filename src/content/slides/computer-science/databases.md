@@ -2,7 +2,7 @@
 title: 'CS - Databases'
 class: computer-science/2024
 date: 2024-11-14
-time: 90
+time: 0
 ---
 
 # Databases <!-- .element: class="r-fit-text" -->

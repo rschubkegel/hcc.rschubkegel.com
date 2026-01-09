@@ -2,7 +2,7 @@
 title: 'CS - Artificial Intelligence'
 class: computer-science/2024
 date: 2024-10-10
-time: 90
+time: 0
 ---
 
 # Artificial Intelligence <!-- .element: class="r-fit-text" -->

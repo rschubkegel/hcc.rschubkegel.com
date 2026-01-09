@@ -2,7 +2,7 @@
 title: 'Python - Pygame Collisions'
 class: computer-science/2024
 date: 2025-01-09
-time: 110
+time: 0
 topics:
   - Flappy Bird pt 4
 ---

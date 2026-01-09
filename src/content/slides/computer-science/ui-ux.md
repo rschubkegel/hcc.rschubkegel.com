@@ -2,7 +2,7 @@
 title: 'CS - UI/UX'
 class: computer-science/2024
 date: 2024-12-12
-time: 90
+time: 0
 ---
 
 # User Interface / User Experience <!-- .element: class="r-fit-text" -->
